@@ -1,0 +1,36 @@
+# config/services.yaml
+services:
+  GPD\Core\Impl\IDatabase:
+    class: GPD\Core\Database\MysqlDatabase
+    arguments:
+      DB_HOST: localhost
+      DB_NAME: maboutique2
+      DB_USER: root
+      DB_PASS: passer@12345
+
+  securitydatabase:
+    class: GPD\Core\Security\SecurityDatabase
+
+  GPD\Core\Impl\ISession:
+    class: GPD\Core\Session
+
+  GPD\Core\Impl\IPaginator:
+    class: GPD\Core\Paginator
+
+  GPD\Core\Impl\IValidator:
+    class: GPD\Core\Validator
+
+  GPD\Core\Impl\IFile:
+    class: GPD\Core\Files
+
+  GPD\Core\Impl\IAuthorize:
+    class: GPD\Core\Authorize
+
+  auth:
+    class: GPD\Core\AuthMiddleware
+
+parameters:
+  DB_HOST: localhost
+  DB_NAME: maboutique2
+  DB_USER: root
+  DB_PASS: passer@12345

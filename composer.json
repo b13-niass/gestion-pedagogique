@@ -1,0 +1,31 @@
+{
+    "name": "cheikhibrahimadieng/gestion-pedagogique",
+    "version": "1.0.0",
+    "autoload": {
+        "psr-4": {
+            "GPD\\": "src/",
+            "GPD\\App\\": "src/app/",
+            "GPD\\App\\Controller\\": "src/app/controller/",
+            "GPD\\App\\Controller\\Error\\": "src/app/controller/errors/",
+            "GPD\\App\\Model\\": "src/app/model/",
+            "GPD\\App\\Entity\\": "src/app/entity/",
+            "GPD\\Core\\": "src/core/",
+            "GPD\\Core\\Database\\": "src/core/database/",
+            "GPD\\Core\\Entity\\": "src/core/entity/",
+            "GPD\\Core\\Model\\": "src/core/model/",
+            "GPD\\Core\\Security\\": "src/core/security/",
+            "GPD\\Core\\Impl\\": "src/core/impl/",
+            "GPD\\Core\\Service\\": "src/core/services/"
+        }
+    },
+    "authors": [
+        {
+            "name": "b13-niass",
+            "email": "barhamadieng66@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6",
+        "symfony/yaml": "^7.1"
+    }
+}
