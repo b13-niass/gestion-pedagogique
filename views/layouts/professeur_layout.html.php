@@ -11,7 +11,7 @@
     <meta name="author" content="dashboardmarket.com">
     <link rel="icon" type="image/png" sizes="32x32" href="<?= assetsPath ?>/images/logos/icon.png">
     <!-- Title -->
-    <title>Top memu</title>
+    <title>Professeur</title>
 
     <!-- inject:css-->
     <link rel="stylesheet" href="<?= assetsPath ?>/vendor_assets/css/apexcharts.min.css">
@@ -27,6 +27,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.8/css/line.min.css">
+    <style>
+        /* Custom CSS to style the date input */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            opacity: 0; /* Hide the native icon */
+            cursor: pointer;
+        }
+        .custom-date-input {
+            position: relative;
+        }
+        .custom-date-input::before {
+            content: '\1F4C5'; /* Unicode character for calendar icon */
+            position: absolute;
+            top: 70%;
+            right: 15px;
+            transform: translateY(-50%);
+            color: #4A90E2; /* Change the color here */
+            pointer-events: none;
+        }
+    </style>
 </head>
 
 <body class="bg-main-dark font-jost relative text-[15px] font-normal leading-[1.5] m-0 p-0">
@@ -35,7 +54,7 @@
 
 <aside id="asideBar" class="asidebar bg-box-dark fixed start-0 top-0 z-[1035] h-screen overflow-hidden xl:!w-[280px] xl:[&.collapsed]:!w-[80px] [&.collapsed]:!w-[250px] xl:[&.TopCollapsed]:!w-[0px] [&.TopCollapsed]:!w-[250px] !transition-all !duration-[0.2s] ease-linear delay-[0s] !w-0 xl:[&.collapsed>.logo-wrapper]:w-[80px]">
     <div class="flex w-[280px] border-e border-box-dark-up logo-wrapper items-center h-[71px] bg-box-dark-up max-xl:hidden">
-        <a href="/prof/cours" class="block text-center">
+        <a href="/prof/1/cours" class="block text-center">
             <div class="logo-full">
                 <img class="ps-[27px] block" src="<?= assetsPath ?>/images/logos/logo-edu-removebg.png" alt="Logo">
             </div>
@@ -58,7 +77,7 @@
                 </a>
                 <ul class="sub-item !visible m-0 hidden list-none p-0 [&.show]:block scrollbar overflow-y-scroll ">
                     <li class="relative border-box-dark-up">
-                        <a href="/prof/cours" class="capitalize rounded-e-[20px] text-gray-600 hover:text-title-dark focus:text-inherit active:text-inherit [&.active]:text-title-dark text-subtitle-dark flex cursor-pointer items-center truncate py-[10px] pe-6 ps-[60px] text-[14px] outline-none transition duration-300 ease-linear hover:outline-none focus:outline-none active:outline-none motion-reduce:transition-none hover:bg-box-dark-up focus:bg-box-dark-up active:bg-box-dark-up ">
+                        <a href="/prof/1/cours" class="capitalize rounded-e-[20px] text-gray-600 hover:text-title-dark focus:text-inherit active:text-inherit [&.active]:text-title-dark text-subtitle-dark flex cursor-pointer items-center truncate py-[10px] pe-6 ps-[60px] text-[14px] outline-none transition duration-300 ease-linear hover:outline-none focus:outline-none active:outline-none motion-reduce:transition-none hover:bg-box-dark-up focus:bg-box-dark-up active:bg-box-dark-up ">
                             <span>Liste</span>
                         </a>
                     </li>
@@ -82,7 +101,7 @@
                 <!-- Navigation Items -->
                 <li class="xl:hidden xl:[&.flex]:flex" id="topMenu-logo">
                     <div class="flex md:w-[190px] xs:w-[170px] max-xs:w-[100px] max-md:pe-[30px] max-xs:pe-[15px] border-e border-box-dark-up logo-wrapper items-center h-[71px] bg-box-dark-up">
-                        <a href="/prof/cours" class="block text-center">
+                        <a href="/prof/1/cours" class="block text-center">
                             <div class="logo-full">
                                 <img class="md:ps-[15px] block" src="<?= assetsPath ?>/images/logos/logo-edu-removebg.png" alt="Logo">
                             </div>
@@ -108,9 +127,9 @@
                     <li>
                         <div class="relative" data-te-dropdown-ref>
                             <button type="button" id="author-dropdown" data-te-dropdown-toggle-ref aria-expanded="false" class="flex items-center me-1.5 text-subtitle-dark text-sm font-medium capitalize rounded-full md:me-0 group whitespace-nowrap">
-                                <span class="sr-only">Open user menu</span>
+                                <span class="sr-only">Ouvrir le menu utilisateur</span>
                                 <img class="min-w-[32px] w-8 h-8 rounded-full xl:me-2" src="images/avatars/thumbs.png" alt="user photo">
-                                <span class="hidden xl:block">Shamim Ahmed</span>
+                                <span class="hidden xl:block"><?= $user->prenom." ".$user->nom ?></span>
                                 <i class="uil uil-angle-down text-subtitle-dark text-[18px] hidden xl:block"></i>
                             </button>
 
@@ -120,22 +139,22 @@
                                     <figure class="flex items-center text-sm rounded-[8px] bg-box-dark-up py-[20px] px-[25px] mb-[12px] gap-[15px]">
                                         <img class="w-8 h-8 rounded-full bg-regular" src="images/avatars/thumbs.png" alt="user">
                                         <figcaption>
-                                            <div class="text-title-dark mb-0.5 text-sm">Shamim Ahmed</div>
-                                            <div class="mb-0 text-xs text-subtitle-dark">Software Engineer</div>
+                                            <div class="text-title-dark mb-0.5 text-sm"><?= $user->prenom." ".$user->nom ?></div>
+                                            <div class="mb-0 text-xs text-subtitle-dark"><?= $user->role?></div>
                                         </figcaption>
                                     </figure>
-                                    <ul class="m-0 pb-[10px] overflow-x-hidden overflow-y-auto scrollbar bg-transparent max-h-[230px]">
-
-                                        <li class="w-full">
-                                            <div class="p-0 hover:text-white hover:bg-box-dark-up rounded-4">
-                                                <button class="inline-flex items-center text-subtitle-dark hover:text-primary hover:ps-6 w-full px-2.5 py-3 text-sm transition-[0.3s] gap-[10px]">
-                                                    <i class="text-[16px] uil uil-user"></i>
-                                                    Profile
-                                                </button>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <a class="flex items-center justify-center text-sm font-medium bg-box-dark-up h-[50px] hover:text-subtitle-dark text-title-dark mx-[-15px] mb-[-15px] rounded-b-6 gap-[6px]" href="log-in.html">
+<!--                                    <ul class="m-0 pb-[10px] overflow-x-hidden overflow-y-auto scrollbar bg-transparent max-h-[230px]">-->
+<!---->
+<!--                                        <li class="w-full">-->
+<!--                                            <div class="p-0 hover:text-white hover:bg-box-dark-up rounded-4">-->
+<!--                                                <button class="inline-flex items-center text-subtitle-dark hover:text-primary hover:ps-6 w-full px-2.5 py-3 text-sm transition-[0.3s] gap-[10px]">-->
+<!--                                                    <i class="text-[16px] uil uil-user"></i>-->
+<!--                                                    Profile-->
+<!--                                                </button>-->
+<!--                                            </div>-->
+<!--                                        </li>-->
+<!--                                    </ul>-->
+                                    <a  href="/logout" class="flex items-center justify-center text-sm font-medium bg-box-dark-up h-[50px] hover:text-subtitle-dark text-title-dark mx-[-15px] mb-[-15px] rounded-b-6 gap-[6px]">
                                         <i class="uil uil-sign-out-alt"></i> Sign Out</a>
                                 </div>
                             </div>

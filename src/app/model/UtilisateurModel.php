@@ -10,7 +10,7 @@ class UtilisateurModel extends Model{
     }
 
     public function connection($email){
-        return App::getSecurityDB()->getUser($email, ['clients']);
+        return App::getSecurityDB()->getUser($email);
     }
 
 }

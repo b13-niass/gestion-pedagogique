@@ -14,9 +14,9 @@
     <meta name="description" content="This is a page about top memu.">
     <meta name="keywords" content="hexadash, web development, UI components">
     <meta name="author" content="dashboardmarket.com">
-    <link rel="icon" type="image/png" sizes="32x32" href="<?= assetsPath ?>/images/">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= assetsPath ?>/images/logos/icon.png">
     <!-- Title -->
-    <title>Top memu</title>
+    <title>Login</title>
 
     <!-- inject:css-->
     <link rel="stylesheet" href="<?= assetsPath ?>/vendor_assets/css/apexcharts.min.css">
@@ -34,9 +34,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.8/css/line.min.css">
 </head>
 
-<body class="bg-white [&.dark]:bg-main-dark font-jost relative text-[15px] font-normal leading-[1.5] m-0 p-0">
+<body class="bg-main-dark [&.dark]:bg-main-dark font-jost relative text-[15px] font-normal leading-[1.5] m-0 p-0">
     <!-- Main Content -->
-    <main class="relative bg-topdark:bg-[#1e2836] bg-contain bg-normalBG">
+    <main class="bg-[#1e2836] relative bg-top dark:bg-[#1e2836]">
 
         <?= $content ?>
 

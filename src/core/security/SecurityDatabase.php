@@ -33,4 +33,5 @@ class SecurityDatabase
         return $this->database->prepare($sql, ["email" => $email], UtilisateurEntity::class, true);
 
     }
+
 }

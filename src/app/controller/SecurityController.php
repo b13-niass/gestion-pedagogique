@@ -55,12 +55,25 @@ class SecurityController extends Controller
                 if ($userFound) {
                     if (password_verify($_POST['password'], $userFound->password)) {
                         $userFound->password = "";
-                        $this->session->saveObjectToSession($userFound,'userConnected');
-                        if ($userFound->role == 'vendeur'){
-                            $this->redirect('/dettes');
-                        }
-                        if ($userFound->role == 'client'){
-                            $this->redirect('/client/dettes');
+//                        dd($userFound);
+                        if ($userFound->role == 'professeur'){
+                            $this->session->saveObjectToSession($userFound,'userConnected');
+                            $this->redirect("/prof/{$userFound->id}");
+                        }else if ($userFound->role == 'rps'){
+                            $this->session->saveObjectToSession($userFound,'userConnected');
+                            $this->redirect("/rps/{$userFound->id}");
+                        }else if ($userFound->role == 'etudiant'){
+                            $this->session->saveObjectToSession($userFound,'userConnected');
+                            $this->redirect("/etu/{$userFound->id}");
+                        }else if ($userFound->role == 'attache'){
+                            $this->session->saveObjectToSession($userFound,'userConnected');
+                            $this->redirect("/attache/{$userFound->id}");
+                        }else{
+                            $data['connectionError'] = "L'email ou le mot de passe est invalide.";
+                            $data['emailValid'] = $_POST['email'];
+
+                            $this->layout = "login_layout";
+                            $this->redirect('/login',$data);
                         }
                     }else{
                         $data['connectionError'] = "L'email ou le mot de passe est invalide.";
@@ -78,5 +91,10 @@ class SecurityController extends Controller
                 }
             }
         }
+    }
+
+    public function logout(){
+        $this->session->close();
+        $this->redirect('/');
     }
 }

@@ -2,7 +2,29 @@
 <module type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="GPD\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/app" isTestSource="false" packagePrefix="GPD\App\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/app/controller" isTestSource="false" packagePrefix="GPD\App\Controller\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/app/controller/errors" isTestSource="false" packagePrefix="GPD\App\Controller\Error\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/app/entity" isTestSource="false" packagePrefix="GPD\App\Entity\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/app/model" isTestSource="false" packagePrefix="GPD\App\Model\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/core" isTestSource="false" packagePrefix="GPD\Core\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/core/database" isTestSource="false" packagePrefix="GPD\Core\Database\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/core/entity" isTestSource="false" packagePrefix="GPD\Core\Entity\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/core/impl" isTestSource="false" packagePrefix="GPD\Core\Impl\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/core/model" isTestSource="false" packagePrefix="GPD\Core\Model\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/core/security" isTestSource="false" packagePrefix="GPD\Core\Security\" />
+      <sourceFolder url="file://$MODULE_DIR$/src/core/services" isTestSource="false" packagePrefix="GPD\Core\Service\" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/graham-campbell/result-type" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpoption/phpoption" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-ctype" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php80" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/yaml" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/vlucas/phpdotenv" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

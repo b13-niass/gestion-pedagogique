@@ -16,7 +16,7 @@ class ServicesProvider implements IServicesProvider
 //        dd($services);
         foreach ($services as $serviceName => $serviceClass) {
             try {
-                $container->set($serviceName, function () use ($serviceClass, $serviceName){
+                $container->set($serviceName, function () use ($serviceClass, $serviceName,$container){
                     $reflectionClass = new \ReflectionClass($serviceClass);
 
                     if ($reflectionClass->isInstantiable()) {
@@ -25,7 +25,24 @@ class ServicesProvider implements IServicesProvider
                             $params = [dbHost, dbName, dbUser, dbPassword];
                             $instance = $reflectionClass->newInstanceArgs($params);
                         } else {
-                            $instance = $reflectionClass->newInstance();
+                            $constructor = $reflectionClass->getConstructor();
+                            if ($constructor === null) {
+                                $instance = $reflectionClass->newInstance();
+                            }else{
+                                $params = $constructor->getParameters();
+                                if (count($params) === 0) {
+                                    $instance = $reflectionClass->newInstance();
+                                } else {
+                                    $dependencies = array_map(function ($param) use ($container) {
+                                        $type = $param->getType();
+                                        if ($type === null) {
+                                            throw new \Exception("Cannot resolve class dependency {$param->name}");
+                                        }
+                                        return $container->get($type->getName());
+                                    }, $params);
+                                    $instance = $reflectionClass->newInstanceArgs($dependencies);
+                                }
+                            }
                         }
                         return $instance;
                     } else {

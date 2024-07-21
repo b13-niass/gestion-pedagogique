@@ -29,6 +29,9 @@ services:
   auth:
     class: GPD\Core\AuthMiddleware
 
+  visitor:
+    class: GPD\Core\VisitorMiddleware
+
 parameters:
   DB_HOST: localhost
   DB_NAME: maboutique2

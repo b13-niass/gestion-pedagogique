@@ -44,9 +44,6 @@ class Container
             }
             return $this->get($type->getName());
         }, $constructor->getParameters());
-
-//        dd($dependencies);
-
         $instance = $reflector->newInstanceArgs($dependencies);
         $this->instances[$name] = $instance;
         return $instance;

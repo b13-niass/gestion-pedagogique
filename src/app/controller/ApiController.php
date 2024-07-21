@@ -48,4 +48,5 @@ class ApiController extends Controller
 
         return $resultArray;
     }
+
 }
