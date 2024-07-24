@@ -70,6 +70,7 @@ class Routes implements IRoute
                 if (is_array($target) && isset($target['controller']) && isset($target['action'])) {
                     $controllerName = $target['controller'];
                     $actionName = $target['action'];
+//                    dd($actionName);
                     try {
                         $reflectionClass = new \ReflectionClass($controllerName);
 

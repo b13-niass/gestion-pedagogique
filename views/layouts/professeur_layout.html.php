@@ -50,11 +50,17 @@
 
 <body class="bg-main-dark font-jost relative text-[15px] font-normal leading-[1.5] m-0 p-0">
 
+<div id="preloaderId" class="preloader fixed w-full h-full z-[9999] flex items-center justify-center top-0 bg-black">
+    <div class="animate-spin inline-block w-[50px] h-[50px] border-[3px] border-current border-t-transparent text-primary rounded-full" role="status" aria-label="loading">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
 <!-- Aside -->
 
 <aside id="asideBar" class="asidebar bg-box-dark fixed start-0 top-0 z-[1035] h-screen overflow-hidden xl:!w-[280px] xl:[&.collapsed]:!w-[80px] [&.collapsed]:!w-[250px] xl:[&.TopCollapsed]:!w-[0px] [&.TopCollapsed]:!w-[250px] !transition-all !duration-[0.2s] ease-linear delay-[0s] !w-0 xl:[&.collapsed>.logo-wrapper]:w-[80px]">
     <div class="flex w-[280px] border-e border-box-dark-up logo-wrapper items-center h-[71px] bg-box-dark-up max-xl:hidden">
-        <a href="/prof/1/cours" class="block text-center">
+        <a href="/prof/<?=$user->id?>/cours" class="block text-center">
             <div class="logo-full">
                 <img class="ps-[27px] block" src="<?= assetsPath ?>/images/logos/logo-edu-removebg.png" alt="Logo">
             </div>
@@ -77,8 +83,26 @@
                 </a>
                 <ul class="sub-item !visible m-0 hidden list-none p-0 [&.show]:block scrollbar overflow-y-scroll ">
                     <li class="relative border-box-dark-up">
-                        <a href="/prof/1/cours" class="capitalize rounded-e-[20px] text-gray-600 hover:text-title-dark focus:text-inherit active:text-inherit [&.active]:text-title-dark text-subtitle-dark flex cursor-pointer items-center truncate py-[10px] pe-6 ps-[60px] text-[14px] outline-none transition duration-300 ease-linear hover:outline-none focus:outline-none active:outline-none motion-reduce:transition-none hover:bg-box-dark-up focus:bg-box-dark-up active:bg-box-dark-up ">
+                        <a href="/prof/<?=$user->id?>/cours" class="capitalize rounded-e-[20px] text-gray-600 hover:text-title-dark focus:text-inherit active:text-inherit [&.active]:text-title-dark text-subtitle-dark flex cursor-pointer items-center truncate py-[10px] pe-6 ps-[60px] text-[14px] outline-none transition duration-300 ease-linear hover:outline-none focus:outline-none active:outline-none motion-reduce:transition-none hover:bg-box-dark-up focus:bg-box-dark-up active:bg-box-dark-up ">
                             <span>Liste</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="relative sub-item-wrapper group ">
+                <a class="group-[.open]:bg-primary/10 rounded-e-[20px] text-subtitle-dark flex h-12 cursor-pointer items-center gap-[16px] truncate px-6 py-4 text-[14px] font-medium outline-none transition duration-300 ease-linear hover:text-title-dark hover:outline-none focus:text-title-dark focus:outline-none active:text-title-dark active:outline-none [&.active]:text-title-dark motion-reduce:transition-none hover:bg-box-dark-up focus:bg-box-dark-up active:bg-box-dark-up group capitalize ">
+                  <span class="nav-icon text-subtitle-dark text-[18px] group-hover:text-current group-[&.active]:text-current group-focus:text-current">
+                     <i class="uil uil-apps"></i>
+                  </span>
+                    <span class="capitalize title">Mon calendrier</span>
+                    <span class=" arrow-down text-subtitle-dark absolute end-0 me-[0.8rem] ms-auto text-[18px] transition-transform duration-300 ease-linear motion-reduce:transition-none group-hover:text-current">
+                     <i class="uil uil-angle-down"></i>
+                  </span>
+                </a>
+                <ul class="sub-item !visible m-0 hidden list-none p-0 [&.show]:block scrollbar overflow-y-scroll ">
+                    <li class="relative border-box-dark-up">
+                        <a href="/prof/<?=$user->id?>/accueil" class="capitalize rounded-e-[20px] text-gray-600 hover:text-title-dark focus:text-inherit active:text-inherit [&.active]:text-title-dark text-subtitle-dark flex cursor-pointer items-center truncate py-[10px] pe-6 ps-[60px] text-[14px] outline-none transition duration-300 ease-linear hover:outline-none focus:outline-none active:outline-none motion-reduce:transition-none hover:bg-box-dark-up focus:bg-box-dark-up active:bg-box-dark-up ">
+                            <span>Sessions</span>
                         </a>
                     </li>
                 </ul>
@@ -235,11 +259,7 @@
 
 <!-- Preloader -->
 
-<!--<div class="preloader fixed w-full h-full z-[9999] flex items-center justify-center top-0 bg-black">-->
-<!--    <div class="animate-spin inline-block w-[50px] h-[50px] border-[3px] border-current border-t-transparent text-primary rounded-full" role="status" aria-label="loading">-->
-<!--        <span class="sr-only">Loading...</span>-->
-<!--    </div>-->
-<!--</div>-->
+
 
 <!-- End: Preloader -->
 

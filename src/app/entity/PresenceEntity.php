@@ -3,11 +3,11 @@ namespace GPD\App\Entity;
 
 use GPD\Core\Entity\Entity;
 
-class SemestreanneeEntity extends Entity
+class PresenceEntity extends Entity
 {
     private int $id;
-    private int $anneescolaire_id;
-    private int $semestre_id;
+    private int $session_id;
+    private int $etudiant_id;
     private string $created_at;
     private string $updated_at;
 }

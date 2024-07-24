@@ -30,7 +30,7 @@
                                 <input class="hidden js-password-toggle" id="toggle" type="checkbox">
                                 <label class=" rounded cursor-pointer text-subtitle-dark text-[15px] js-password-label dark:text-subtitle-dark" for="toggle"><i class="uil uil-eye-slash"></i></label>
                             </div>
-                            <input name="password" id="passwordId" class="flex items-center shadow-none py-[10px] px-[20px] h-[48px] border-1 border-regular rounded-4 w-full text-[14px] font-normal leading-[1.5] placeholder:text-[#A0A0A0] focus:ring-primary focus:border-primary" type="text" value="" placeholder="Password">
+                            <input name="password" id="passwordId" class="flex items-center shadow-none py-[10px] px-[20px] h-[48px] border-1 border-regular rounded-4 w-full text-[14px] font-normal leading-[1.5] placeholder:text-[#A0A0A0] focus:ring-primary focus:border-primary" type="password" value="" placeholder="Password">
                         </div>
                         <span class="text-danger text-sm <?php isset($errors['password']) && !empty($errors['password']) ? 'visible' : 'invisible' ?>"><?= isset($errors['password']) && !empty($errors['password']) ? $errors['password'] : '' ?></span>
                     </div>

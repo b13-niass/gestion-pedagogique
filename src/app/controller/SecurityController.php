@@ -58,7 +58,7 @@ class SecurityController extends Controller
 //                        dd($userFound);
                         if ($userFound->role == 'professeur'){
                             $this->session->saveObjectToSession($userFound,'userConnected');
-                            $this->redirect("/prof/{$userFound->id}");
+                            $this->redirect("/prof/{$userFound->id}/accueil");
                         }else if ($userFound->role == 'rps'){
                             $this->session->saveObjectToSession($userFound,'userConnected');
                             $this->redirect("/rps/{$userFound->id}");

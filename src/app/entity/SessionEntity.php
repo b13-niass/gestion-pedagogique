@@ -13,6 +13,8 @@ class SessionEntity extends Entity
     private string $etat_global;
     private string $etat_avancement;
     private string $date_session;
+    private string $module_name;
+    private string $presence="";
     private string $created_at;
     private string $updated_at;
 }

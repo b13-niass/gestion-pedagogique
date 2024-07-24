@@ -5,5 +5,7 @@ use GPD\Core\Model\Model;
 
 class AnneescolaireModel extends Model
 {
-
+    public function semestreannees(){
+        return $this->hasMany("SemestreanneeEntity");
+    }
 }

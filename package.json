@@ -1,0 +1,23 @@
+{
+  "name": "gestion-pedagogique",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npx tailwindcss -i ./public/assets/css/tailwind.css -o ./public/assets/css/styles.css --watch\" \"tsc --watch\"",
+    "dieng": "npx tailwindcss -i ./public/assets/css/tailwind.css -o ./public/assets/css/styles.css --watch & tsc --watch"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "typescript": "^5.4.5",
+    "watch": "^0.13.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "browserslist": "^4.23.0",
+    "caniuse-lite": "^1.0.30001621",
+    "ol": "^9.2.3"
+  }
+}

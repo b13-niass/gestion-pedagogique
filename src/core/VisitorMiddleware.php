@@ -20,7 +20,7 @@ class VisitorMiddleware implements IMiddleware
         }else{
             $user = $this->session->restoreObjectFromSession('Utilisateur', 'userConnected');
             if ($user->role == 'professeur'){
-                header("Location: /prof/{$user->id}");
+                header("Location: /prof/{$user->id}/accueil");
             }else if ($user->role == 'rps'){
                 header("Location: /rps/{$user->id}");
             }else if ($user->role == 'etudiant'){

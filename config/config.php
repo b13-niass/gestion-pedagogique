@@ -17,6 +17,7 @@ define('webRoot', $_ENV['WEBROOT']);
 define('viewDir', $_ENV['VIEW_DIR']);
 define('uploadDir', $_ENV['UPLOAD_DIR']);
 define('assetsPath', $_ENV['ASSETS_PATH']);
+define('rsPath', $_ENV['RESSOURCE_PATH']);
 
 require_once root."/config/helpers.php";
 
