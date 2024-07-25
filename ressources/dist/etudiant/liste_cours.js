@@ -35,9 +35,7 @@ import { Pagination } from "../Model/Pagination.js";
             ${course.heureGlobale}
         </td>
         <td class="flex flex-col gap-[5px] ps-4 pe-[25px] py-2.5 font-normal last:text-end capitalize text-[14px] text-title-dark border-none group-hover:bg-transparent rounded-e-[4px]">
-            <a href="/prof/${idEtudiant}/cours/${course.id}" class="flex-1 capitalize border-dashed border-1 border-light-extra text-[14px] bg-transparent hover:bg-white text-title-dark hover:text-dark hover:border-white/10 font-semibold leading-[22px] inline-flex items-center justify-center rounded-[40px] px-[2px] h-[44px] transition duration-300 ease-in-out">
-                <span>Détails</span>
-            </a>
+        
             <a href="/prof/${idEtudiant}/cours/${course.id}/sessions" class="flex-1 capitalize border-dashed border-1 border-light-extra text-[14px] bg-transparent hover:bg-white text-title-dark hover:text-dark hover:border-white/10 font-semibold leading-[22px] inline-flex items-center justify-center rounded-[40px] px-[2px] h-[44px] transition duration-300 ease-in-out">
                 <span>Sessions</span>
             </a>

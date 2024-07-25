@@ -15,6 +15,7 @@ class SessionEntity extends Entity
     private string $date_session;
     private string $module_name;
     private string $presence="";
+    private bool $justificatif=false;
     private string $created_at;
     private string $updated_at;
 }

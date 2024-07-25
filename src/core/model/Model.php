@@ -142,7 +142,7 @@ abstract class Model implements IModel
         $values = implode(', ', $stringValues);
 
         $sql = "INSERT INTO {$this->table} ({$into}) VALUES ({$values})";
-        // dd($sql);
+//         dd($params);
         return $this->query($sql, $this->getEntityName(), $params);
     }
 
@@ -208,6 +208,9 @@ abstract class Model implements IModel
         return array_values($arrayOfModel);
     }
 
+//    public function getTable(){
+//        return $this->table;
+//    }
 
     public function belongsTo($classOne, $tableOne=null,$idInOne=null)
     {

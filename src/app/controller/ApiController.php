@@ -6,6 +6,7 @@ use GPD\App\App;
 use GPD\App\Model\CourModel;
 use GPD\App\Model\DemandeannulationModel;
 use GPD\App\Model\EtudiantModel;
+use GPD\App\Model\PresenceModel;
 use GPD\App\Model\ProfesseurModel;
 use GPD\App\Model\SessionModel;
 use GPD\App\Model\UtilisateurModel;
@@ -24,6 +25,7 @@ class ApiController extends Controller
     private DemandeannulationModel $demandeannulationModel;
     private SessionModel $sessionModel;
     private EtudiantModel $etudiantModel;
+    private PresenceModel $presenceModel;
 
     public function __construct(IValidator $validator, ISession $session, IFile $file, IAuthorize $authorize, IPaginator $paginator)
     {
@@ -34,7 +36,7 @@ class ApiController extends Controller
         $this->demandeannulationModel = App::getInstance()->getModel("Demandeannulation");
         $this->sessionModel = App::getInstance()->getModel("Session");
         $this->etudiantModel = App::getInstance()->getModel("Etudiant");
-
+        $this->presenceModel = App::getInstance()->getModel("Presence");
     }
 
     public function listeCoursProf($idProf)
@@ -109,8 +111,6 @@ class ApiController extends Controller
                     "etat_avancement" => "ATTENTE",
                     "id" => $idSession
                 ]);
-//                echo json_encode($result);
-
                 if ($result){
                     $this->demandeannulationModel->setTable();
                     $result = $this->demandeannulationModel->save([
@@ -159,7 +159,6 @@ class ApiController extends Controller
     }
 
     public function allEtudiantSessions($idEtu){
-
         $data = [];
         if($this->session->issetE('userConnected')){
             $data['user'] = $this->session->restoreObjectFromSession('Utilisateur', 'userConnected');
@@ -172,9 +171,36 @@ class ApiController extends Controller
             $data['cours'] = $this->etudiantModel->getCoursByEtudiant($etudiant->classe_id);
             $sessions = $this->etudiantModel->getEtudiantSessions($data['cours']);
             $sessions = $this->etudiantModel->getEtudiantSessionsWithPresence($data['cours']);
-//            echo json_encode($this->convertObjectsToArray($sessions));
             $sessionsArray = $this->convertObjectsToArray($sessions);
             echo json_encode($this->transformEtudiantSessions($sessionsArray));
+        }else{
+            echo json_encode([]);
+        }
+    }
+
+    public function allEtudiantAbsence($idEtu)
+    {
+        $data = [];
+        if($this->session->issetE('userConnected')){
+            $data['user'] = $this->session->restoreObjectFromSession('Utilisateur', 'userConnected');
+            $user = $data['user'];
+            if($idEtu!= $user->id){
+                $this->redirect("/etu/{$user->id}");
+            }
+            $etudiant = $this->utilisateurModel->getOneEtudiant($user->id);
+            $this->etudiantModel->getEntity()->id = $etudiant->id;
+            $cours = $this->etudiantModel->getCoursByEtudiant($etudiant->classe_id);
+//            $sessions = $this->etudiantModel->getEtudiantSessions($cours);
+            $sessions = $this->etudiantModel->getEtudiantAbsenceWithJustificatif($cours);
+            $sessions_with_absence = [];
+
+            foreach($sessions as $session){
+                if($session->presence == "absent" && $this->compareDateTimeEndWithNow($session->heureFin)){
+                    $sessions_with_absence[] = $session;
+                }
+            }
+            $data['cours_absence'] = $sessions_with_absence;
+            echo json_encode($this->convertObjectsToArray($data['cours_absence']));
         }else{
             echo json_encode([]);
         }
@@ -203,7 +229,25 @@ class ApiController extends Controller
     }
 
     public function marquerPresenceEtudiant($idEtu){
-
+        $postData = file_get_contents('php://input');
+        $data = json_decode($postData, true);
+//        echo json_encode($data);
+        if (isset($data['request_type']) && $data['request_type'] == 'togglePresence'){
+            $idSession = (int)$data['event_id']??'';
+            if(!empty($idSession) && !empty($idEtu)){
+                $this->presenceModel->setTable();
+                $etudiant = $this->utilisateurModel->getOneEtudiant((int)$idEtu);
+                $result = $this->presenceModel->save([
+                    'session_id' => (int)$idSession,
+                    'etudiant_id' => $etudiant->id
+                ]);
+                if ($result){
+                    echo json_encode(['status' => 1]);
+                } else{
+                    echo json_encode(['status' => 2]);
+                }
+            }
+        }
     }
 
     public function transformSessions($sessions) {
@@ -241,5 +285,13 @@ class ApiController extends Controller
         return $events;
     }
 
+    public function compareDateTimeEndWithNow($datetimeString) {
+        $givenDateTime = new \DateTime($datetimeString);
+        $currentDateTime = new \DateTime();
 
+        if ($givenDateTime <= $currentDateTime) {
+            return true;
+        }
+        return false;
+    }
 }

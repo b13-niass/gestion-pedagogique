@@ -178,18 +178,16 @@
 
                 let classNames;
                 if (today >= startDate && today <= endDate) {
-                    classNames = 'bg-green-500 text-white'; // Vert pour les dates actuelles dans l'intervalle
+                    classNames = 'bg-green-500 text-white'; // Green for current date within the interval
                 } else if (endDate > today) {
-                    classNames = 'bg-yellow-500 text-white'; // Jaune pour les dates futures
-                } else if (endDate.getTime() === today.getTime()) {
-                    classNames = 'bg-green-500 text-white'; // Vert pour les dates égales à aujourd'hui
+                    classNames = 'bg-yellow-500 text-white'; // Yellow for future dates
                 } else {
-                    classNames = 'bg-red-500 text-white'; // Rouge pour les dates passées
+                    classNames = 'bg-red-500 text-white'; // Red for past dates
                 }
 
                 info.el.classList.add(...classNames.split(' '));
 
-                // Ajout du tooltip
+                // Add tooltip
                 const presence = info.event.extendedProps.etat_presence;
                 tippy(info.el, {
                     content: `Présence: ${presence}`,
@@ -207,7 +205,6 @@
                 if (presenceStatus === 'absent' && today >= startDate && today <= endDate) {
                     const modal = document.getElementById('cancelModal');
                     const modalText = document.getElementById('modalText');
-                    const justificationInput = document.getElementById('justificationInput');
                     const closeButton = document.getElementById('closeButton');
                     const confirmButton = document.getElementById('confirmButton');
 
@@ -222,31 +219,29 @@
                     };
 
                     confirmButton.onclick = async () => {
-                        const justification = justificationInput.value;
-                        if (justification) {
-                            try {
-                                const response = await fetch(`/api/etu/${user_id}/sessions`, {
-                                    method: "POST",
-                                    headers: { "Content-Type": "application/json" },
-                                    body: JSON.stringify({ request_type: 'cancelEvent', event_id: info.event.id, justification })
-                                });
+                        try {
+                            const response = await fetch(`/api/etu/${user_id}/sessions`, {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ request_type: 'togglePresence', event_id: info.event.id })
+                            });
 
-                                const data = await response.json();
-                                if (data.status === 1) {
-                                    alert('Session annulée avec succès!');
-                                    calendar.refetchEvents();
-                                } else {
-                                    alert(data.error || 'An error occurred');
-                                }
-                            } catch (error) {
-                                console.error('Error handling event cancellation:', error);
-                                alert('An error occurred');
-                            } finally {
-                                modal.classList.add('hidden');
-                                modal.style.display = 'none';
+                            const data = await response.json();
+                            console.log(data);
+                            exit();
+                            if (data.status === 1) {
+                                alert('Présence marquée avec succès!');
+                                calendar.refetchEvents();
+                            } else {
+                                console.error('Server responded with an error:', data.error);
+                                alert(data.error || 'An error occurred');
                             }
-                        } else {
-                            alert('Veuillez fournir un justificatif');
+                        } catch (error) {
+                            console.error('Error handling event cancellation:', error);
+                            alert('An error occurred while handling the event cancellation.');
+                        } finally {
+                            modal.classList.add('hidden');
+                            modal.style.display = 'none';
                         }
                     };
                 }
@@ -255,7 +250,6 @@
 
         calendar.render();
     });
-
 </script>
 
 Modal Background

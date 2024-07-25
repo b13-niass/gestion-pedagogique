@@ -15,6 +15,7 @@ $webRoutes = new Routes();
 $webRoutes->addGetRoute('', ["controller" => SecurityController::class, 'action' => 'login'])->middleware('visitor');
 $webRoutes->addGetRoute('/login', ["controller" => SecurityController::class, 'action' => 'login'])->middleware('visitor');
 $webRoutes->addGetRoute('/logout', ["controller" => SecurityController::class, 'action' => 'logout'])->middleware('auth');
+$webRoutes->addGetRoute('/etu/{idEtu}/absences', ["controller" => EtudiantController::class, 'action' => 'indexAbsence'])->middleware('auth');
 $webRoutes->addGetRoute('/etu/{idEtu}/cours', ["controller" => EtudiantController::class, 'action' => 'indexCours'])->middleware('auth');
 $webRoutes->addGetRoute('/etu/{idEtu}', ["controller" => EtudiantController::class, 'action' => 'index'])->middleware('auth');
 $webRoutes->addGetRoute('/prof/{idProf}/accueil', ["controller" => ProfesseurController::class, 'action' => 'indexCalendar'])->middleware('auth');
@@ -25,6 +26,7 @@ $webRoutes->addGetRoute('/prof/{idProf}', ["controller" => ProfesseurController:
 
 // Notion de slug
 
+$webRoutes->addPostRoute('/etu/{idEtu}/absences/{idSession}', ["controller" => EtudiantController::class, 'action' => 'sendJustification'])->middleware('auth');
 $webRoutes->addPostRoute('/login', ["controller" => SecurityController::class, 'action' => 'login'])->middleware('visitor');
 
 return $webRoutes;

@@ -7,7 +7,7 @@ use GPD\Core\Impl\IFile;
 class Files implements IFile
 {
 
-    private array $imagesTypes = ['jpg', 'png', 'gif', 'pdf'];
+    private array $imagesTypes = ['jpg','jepg', 'png', 'gif', 'pdf'];
     private string $dir = uploadDir;
 
     public function load($fileKey)
@@ -85,6 +85,11 @@ class Files implements IFile
     public function setDir($dir)
     {
         $this->dir = $dir;
+    }
+
+    public function getDir($dir)
+    {
+       return $this->dir;
     }
 
 }

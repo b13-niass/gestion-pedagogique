@@ -17,4 +17,8 @@ class SessionModel extends Model
         return $this->hasMany("PresenceEntity");
     }
 
+    public function justificatifs(){
+        return $this->hasMany("JustificatifabsenceEntity");
+    }
+
 }

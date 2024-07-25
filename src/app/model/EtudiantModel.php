@@ -76,6 +76,49 @@ class EtudiantModel extends Model
         return $sessions_with_presence;
     }
 
+    public function getEtudiantAbsenceWithJustificatif(array $cours){
+        $sessions = $this->getEtudiantSessions($cours);
+        $sessions_with_presence = array();
+        foreach ($sessions as $session){
+            $cpt_presence = 0;
+            foreach ($session->presences as $presence) {
+//                return $presence->getEntity();
+                if ($presence->getEntity()->etudiant_id == $this->getEntity()->id){
+                    $cpt_presence++;
+                    break;
+                }
+            }
+            if ($cpt_presence){
+                $session->getEntity()->presence = "present";
+            }else{
+                $session->getEntity()->presence = "absent";
+            }
+            $sessions_with_presence[] = $session;
+        }
+
+        $sessions_with_justificatif = [];
+        foreach ($sessions_with_presence as $session) {
+            $cpt = 0;
+            if($session->getEntity()->presence == "absent"){
+                foreach ($session->justificatifs as $justif){
+                    if ($session->getEntity()->id == $justif->getEntity()->session_id){
+                        $cpt++;
+                        break;
+                    }
+                }
+            }
+
+            if ($cpt){
+                $session->getEntity()->justificatif = true;
+            }else{
+                $session->getEntity()->justificatif = false;
+            }
+            $sessions_with_justificatif[] = $session->getEntity();
+        }
+        return $sessions_with_justificatif;
+    }
+
+
     public function coursWithInfo(array $cours){
         $result = [];
         foreach ($cours as $cour){

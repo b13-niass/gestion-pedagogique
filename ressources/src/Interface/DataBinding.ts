@@ -35,3 +35,19 @@ export interface IListCoursLoadData {
      annee_name?:string;
      classes?: IClasse[];
 }
+
+export interface IListSessionsLoadData {
+    id?:number;
+    cour_id?: number;
+    created_at?: string;
+    date_session?: string;
+    etat_avancement?: string;
+    etat_global?: string;
+    heureDebut?: string;
+    heureFin?: string;
+    module_name?: string;
+    presence?: string;
+    justificatif?: boolean;
+    salle_id?: string;
+    updated_at?: string;
+}
